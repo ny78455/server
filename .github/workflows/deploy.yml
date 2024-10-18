@@ -23,11 +23,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Add SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
       - name: Deploy to Server
-        env:
-          HOST: ${{ secrets.SERVER_IP }}
-          USERNAME: ${{ secrets.SERVER_USER }}
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
         run: |
           scp -r ./* ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/your_app
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "bash /var/www/your_app/deploy.sh"
