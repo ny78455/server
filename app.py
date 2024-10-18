@@ -49,12 +49,12 @@ app = Flask(__name__)
 CORS(app)
 
 # Alpaca API setup
-API_KEY = os.getenv('APCA_API_KEY_ID')
-API_SECRET = os.getenv('APCA_API_SECRET_KEY')
+API_KEY = 'PKPCAGXF68DX8KW71ETH'
+API_SECRET = 'kch756FLjrTIlDurZsEREufDafjPUZAmvgRnh4I5'
 BASE_URL = 'https://paper-api.alpaca.markets'
-api_key_bin = os.getenv('api_key_bin')
-api_secret_bin = os.getenv('secret_key_bin')
-yt_data_api_key = os.getenv('yt_data_api_key')
+api_key_bin = '0JPjGWXZTp7QQf59MLCDlT1K2ikdPFcnh2COu0hl7VisYUHJl6kBrCL5UTPUGLAx'
+api_secret_bin = 'BFCkvz1XOm11sslYdXKxzNcjDaAqmlEMgF4euJt5JDhU1pmdjc9mOGCRIlPPnFYj'
+yt_data_api_key = 'AIzaSyALf-oPcPtY4OnejjB-6c-L3GCMf1q-nmw'
 max_results = 50
 
 PLACEHOLDER_IMAGE = '/static/images/svg/idea-image-placeholder.svg'  # For paper trading
