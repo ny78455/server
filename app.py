@@ -42,8 +42,6 @@ from src.pipeline.predict_pipeline_fa import load_models, generate_embeddings, g
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 
-load_dotenv() 
-
 app = Flask(__name__)
 
 CORS(app)
