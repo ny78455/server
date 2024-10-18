@@ -23,14 +23,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Add SSH Key
+      - name: Deploy to Server using Password Authentication
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
-
-      - name: Deploy to Server
-        run: |
-          scp -r ./* ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/var/www/your_app
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "bash /var/www/your_app/deploy.sh"
+          sshpass -p "3fM*h+x9ChtwaGL9" ssh -o StrictHostKeyChecking=no root@139.84.176.196  "mkdir -p /var/www/your_app"
+          sshpass -p "3fM*h+x9ChtwaGL9" scp -r ./* root@139.84.176.196:/var/www/your_app
+          sshpass -p "3fM*h+x9ChtwaGL9" ssh -o StrictHostKeyChecking=no root@139.84.176.196 "bash /var/www/your_app/deploy.sh"
